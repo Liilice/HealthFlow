@@ -1,0 +1,85 @@
+{
+  "Calculate calories": {
+    "name": "Calcultate calories",
+    "description": [
+      "Calculating dietary calories is a widely used weight management method. By recording daily food, it can help you better understand the calories and nutrition you consume throughout the day, and manage your weight and health according to your personal needs. ",
+      "According to the principle of caloric balance, when the daily caloric intake is less than the caloric consumption (negative caloric balance), weight will be lost."
+    ],
+    "Advantages": ["Advantages: Strong applicability"],
+    "Disadvantages": ["Disadvantages: Slighty cumbersome"],
+    "Key_points": [
+      "Set calorie target: The App will set a daily budget calorie based on your basic information and weight management goals.",
+      "Record food intake: Record daily food and drink intake, understand and control food intake calories.",
+      "Properly distribute calories: Eat more healthy foods, including vegetables, fruits, whole grains, protein and healthy fats, to ensure you get enough nutrients. Reduce the intake of hight-calorie, high-sugar, and high-fat foods.",
+      "Control food intake: Control the portion size and frequency of meals to ensure that the set calorix target is not exceeded and avoid overeating and excessive snaking.",
+      "Combine exercise: Increased physical activity can help burn more calories, speed up the weight loss process, and help maintain muscle mass.",
+      "Persistence: Long-term persistence is the key to success, as weight management usually takes time. It's important to stick to your colorie goals and maintain long-term healthy habits."
+    ],
+    "Suitable_for_the_crowd": {
+      "description": "Counting dietary calories is suitable for people who want to better understand and control their eating habits, manage their weight, or achieve specific nutritional goals. Here are some situations and people for whom this method is appropriate :",
+      "people": [
+        "Weight management goals: If you want to lose weight, gain weight, or maintain a healthy weight, counting dietary calories can help you determine how many calories you should consume each day to achieve these goals.",
+        "Health awareness: If you want to pay more attention to your eating habits, make sure you are getting enought nutrients or avoid eating too many calories, counting dietary calories can provide useful information.",
+        "Body fat control: If you want to control your body fat, whether for health or exercise goals, calculating dietary calories can help you controlyour fat intake.",
+        "Nutritional needs: If you have special nutrional needs, such as a hight-protein, low-carbohydrateof low-fat diet. Calculating dietary calories can help you ensure you meet these needs.",
+        "Self-monitoring: By counting dietary calories, you can better understand the nutritional content of your daily intake and better manage it. Take care of yourself.",
+        "Athletes: Since more calories are needed to support training and recovery, counting dietary calories can help athletes determine appropriate caloric intake.",
+        "Special diet: If you are following a special diet such as Vegan, gluten-free, ketogenic or otherwise, counting dietary calories can ensure you meet nutritional needs within the framework of your special diet."
+      ]
+    }
+  },
+  "16:8 Light fasting": {
+    "name": "16:8 Light fasting",
+    "description": [
+      "16:8 Light fasting is an intermittent fasting method that divides 24 hours a day into two periods: one is the meal period, which allows food intake, usually 8 hours; the other is the fasting period, usually only drinking is allowed Zero-calori liquids such as water, sugar-free coffee or tea, usually 16 hours.",
+      "The number 16:8 represents the division of 24 hours in a day according to [fasting duration: meal duration].",
+      "The hypothesis behind intermittent fasting is that by extending the fasting period, the body will begin to draw energy from stored fat, thereby promoting weight loss."
+    ],
+    "Advantages": ["Advantages: Easy to implement"],
+    "Disadvantages": ["Disadvantages: Prone to hunger"],
+    "Key_points": [
+      "Meal period: You can eat freely during this period, but you should still eat in moderation and avoid overeating. Choose healthy and balanced foods and avoid too many processed foods and high-sugar foods.",
+      "Fasting Period: You should refrain from eating during the remainder of the meal period. Drink zero-calorie liquids (such as water, sugar-free coffee or tea) to ensure you are getting enough fluids.",
+      "Supplement nutrition: Make sure you take in enough nutrients during meal times and don't limit your caloric intake to unhealthy levels to avoid nutrional deficiencies.",
+      "Gradual: If you are a newbie, you can start with a shorter fasting window (such as 12:12, 14:10), and then gradually increase the time to allow your body to addapt.",
+      "Individual differences: Everyone's body and health conditions are different. Choose a light model that suits you according to oyour individual needs. If you have any heath problems or serve discomfort, it is recommended that you seek medical treatment offline in time.",
+      "Health monitoring: Regularly monitor health status, such as blood pressure, blood sugar and blood lipid levels. If you find that intermittent fasting has adverse effects on your health, you should adjust your eating pattern in time to ensure that health is your priority."
+    ],
+    "Suitable_for_the_crowd": {
+      "description": "It is not recommended for use by special groups such as minors, pregnant or lactating woman, and people over 70 years old. It is not recommended for use by people with a history of eating disorders and a BMI lower than 18.5. If you have other underlying diseases, please use it under the advice of a doctor. This method.",
+      "people": [
+        "Weight management: If you want to lose weight or maintain a healthy weight, 16:8 fasting can help you limit your food intake within a certain period of time to control your total caloric intake.",
+        "Blood sugar control: Some studies show that 16:8 fasting can improve blood sugar control and may be beneficial for people with type 2 diabetes or pre-diabetes.",
+        "Time constraints: For people who are pressed for time and onnot prepare and eat meals for a long time every day, 16:8 light fasting can provide a relatively simple eating pattern",
+        "Time eating: Suitable for people who prefer to limit their food intake to a certain time of day."
+      ]
+    }
+  },
+  "Scientific medication": {
+    "name": "Scientific medication",
+    "description": [
+      "Medication assistance refers to methods that combine life itervention (diet control + increased exercise) to help with weight management when using GLP-1 drugs.",
+      "GLP-1 (glucagon-like peptide-1) is an intestinal endocrine hormone that plays an important role in appetite control and blood sugar regulation.",
+      "It can slow down gastric emptying, reduce hunger, thereby increasing satiety, reducing food intake, reducing appetite, and achieving weight management."
+    ],
+    "Advantages": [
+      "Advantages: Simple an easy to implement, less likely to cause hunger"
+    ],
+    "Disadvantages": ["Disadvantages: Adverse reactions may occur"],
+    "Key_points": [
+      "Special reminder: Combined with life intervention (diet control + increased exercise), weight management will be more effective.",
+      "Rational use of medicines: The medicines are prescription medicines. For specific dosage, please follow the doctor's advice or drug instructions. Never increase your dose suddenly on your own.",
+      "Adverse reactions: Some people may experience nausea, vomiting and other symptoms, witch can be dealt with according to the treasure chest membership plan.",
+      "Dietary point: Eat more high-quality protein, eat more high-fiber/low-GI foods, drinks more water but nor excessively, eat less high-sugar, fat, and sofium foods, and drink less alcohol and less spicy food. While strengthening weight management, it can also minimize the uncomfortable symtoms caused by gastrointestinal reactions.",
+      "Good habits: Chess slowly, eat in small mouths, eatsmmal meals frequently, do not lie dow immediately after meals or do excessive activities, and avoid snacking before going to bed.",
+      "Exercise recommendations: Combined with 150 minutes of moderate-intensity exercise per week, the overall effect during medication can be impoved. You can adjust it as appropriate according to your own situation."
+    ],
+    "Suitable_for_the_crowd": {
+      "description": "It is not recommanded for use by minors, people preparing for pregnancy, pregnancy lactation and other special group; if you have underlying diseases, please use this method under the advice of a doctor.",
+      "people": [
+        "People with intestinal hunger: People who feel full after eating normal portions but feel hungry again soon respond better to GLP-1 drugs.",
+        "Type 2 diabetes people: GLP-1 drugs can lower blood sugar, and combined with blood sugar control and weight management, can lead to better health."
+      ]
+    }
+  }
+}
