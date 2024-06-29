@@ -1,35 +1,41 @@
 import {
   StyleSheet,
   Text,
-  Button,
   Dimensions,
-  Image,
-  Platform,
   TouchableOpacity,
   View,
   TextInput,
 } from "react-native";
+import { router } from "expo-router";
+
 import { Collapsible } from "@/components/Collapsible";
 import { ExternalLink } from "@/components/ExternalLink";
 import ParallaxScrollView from "@/components/ParallaxScrollView";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-
 import React, { useState } from "react";
 const { height } = Dimensions.get("window");
 
-export default function TabTwoScreen() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const redirectHome = () => {
+    router.replace("/");
+  };
   const handelSubmit = () => {};
+
   return (
     <ThemedView style={styles.titleContainer}>
       <ThemedText
         type="title"
         style={{ color: "#ced6e0", paddingTop: 15, paddingBottom: 15 }}
       >
-        <TabBarIcon name={"close"} style={{ fontSize: 50 }} />
+        <TabBarIcon
+          name={"close"}
+          style={{ fontSize: 50 }}
+          onPress={redirectHome}
+        />
       </ThemedText>
       <View style={styles.flex}>
         <ThemedText type="title">Welcome back</ThemedText>
