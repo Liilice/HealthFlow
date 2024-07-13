@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   StyleSheet,
-  Dimensions,
   TouchableOpacity,
   View,
   Image,
@@ -12,8 +11,6 @@ import { ThemedView } from "@/components/ThemedView";
 import data from "@/assets/json/info_file.json";
 import { Info_template } from "@/components/homepage/Info_template";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-
-const { height } = Dimensions.get("window");
 
 export function Template() {
   const [selectCalcul, setSelectCalcul] = useState(false);

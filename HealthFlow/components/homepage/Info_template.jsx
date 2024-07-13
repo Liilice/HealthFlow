@@ -1,16 +1,8 @@
-import {
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  View,
-  Image,
-  Text,
-} from "react-native";
+import { StyleSheet, Dimensions, View, Image, Text } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { useEffect, useState } from "react";
 import { ScrollView } from "react-native";
 const { height } = Dimensions.get("window");
-const { width } = Dimensions.get("window").width;
 
 export function Info_template({ data }) {
   const [info, setInfo] = useState([]);
