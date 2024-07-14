@@ -12,6 +12,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "app/(tabs)/explore.jsx",
-    "app/(tabs)/index.jsx"
+    "app/(tabs)/index.jsx",
+    "app/(interface)/accueil.jsx"
   ]
 }
