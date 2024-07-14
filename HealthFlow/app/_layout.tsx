@@ -8,7 +8,8 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
 import { useColorScheme } from "@/hooks/useColorScheme";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -24,6 +25,13 @@ export default function RootLayout() {
     if (loaded) {
       SplashScreen.hideAsync();
     }
+    async function existToken() {
+      const token = await AsyncStorage.getItem("token");
+      if (token !== null) {
+        router.replace("/homepage");
+      }
+    }
+    existToken();
   }, [loaded]);
 
   if (!loaded) {
