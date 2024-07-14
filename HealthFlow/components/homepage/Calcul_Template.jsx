@@ -7,18 +7,25 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 export default function Calcul_Template(data) {
+  const [prevision, setPrevision] = useState("");
+  console.log("data", data.data);
+  useEffect(() => {
+    if (data.data.data.length > 0) {
+      setPrevision(data.data.data[0].prévision);
+    }
+  }, [data]);
   return (
     <ThemedView style={styles.container}>
       <Text>Diet and exercise records</Text>
       <View style={styles.flex_border}>
         <Text>
           Still edible (Kcal){"\n"}
-          {data.data.data[0].prévision}
+          {prevision}
         </Text>
         <Text> = </Text>
         <Text>
           Budget{"\n"}
-          {data.data.data[0].prévision}
+          {prevision}
         </Text>
         <Text> - </Text>
         <Text>Diet{"\n"}0</Text>

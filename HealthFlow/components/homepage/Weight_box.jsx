@@ -7,8 +7,15 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import { useState, useEffect } from "react";
 
 export default function Weight_box(data) {
+  const [weight, setWeight] = useState("");
+  useEffect(() => {
+    if (data.data.data.length > 0) {
+      setWeight(data.data.data[0].weight);
+    }
+  }, [data]);
   return (
     <TouchableOpacity style={styles.card}>
       <View style={styles.flex}>
@@ -22,7 +29,7 @@ export default function Weight_box(data) {
       </View>
       <View>
         <Text style={{ marginTop: 5, color: "black" }}>
-          {data.data.data[0].weight}kg{" "}
+          {weight}kg
           <TabBarIcon name={"eye"} color="#40CD98" />
         </Text>
       </View>
