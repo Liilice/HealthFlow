@@ -18,6 +18,8 @@ import { Button, Input } from "@rneui/themed";
 import { Picker } from "@react-native-picker/picker";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import Slider from "@react-native-community/slider";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { differenceInYears, parseISO } from "date-fns";
 
 const { height } = Dimensions.get("window");
 
@@ -33,6 +35,7 @@ export default function Login() {
   const [show, setShow] = useState(false);
   const [mode, setMode] = useState("date");
   const [date, setDate] = useState(new Date());
+  const [errorAge, setErrorAge] = useState("");
 
   const showDate = (modeToShow) => {
     setShow(true);
@@ -64,8 +67,6 @@ export default function Login() {
         .from("Users")
         .select("email")
         .eq("email", email);
-      console.log(data);
-      console.log(data.lenght);
       if (data.length === 0) {
         const {
           data: { session },
@@ -77,9 +78,11 @@ export default function Login() {
         setShowModal(true);
       } else {
         setShowModal(false);
+        await AsyncStorage.setItem("token", email);
         router.replace("/homepage");
       }
     } else {
+      await AsyncStorage.setItem("token", email);
       router.replace("/homepage");
     }
   };
@@ -93,17 +96,54 @@ export default function Login() {
   };
 
   const handleSubmit = async () => {
-    const { error } = await supabase.from("Users").insert({
-      gender: gender,
-      username: username,
-      email: email,
-      birthday: date,
-      weight: weight,
-      height: height,
-    });
-    setEmail("");
-    setPassword("");
-    router.replace("/homepage");
+    if (
+      gender != null &&
+      username !== null &&
+      email !== null &&
+      date !== null &&
+      weight !== null &&
+      height !== null
+    ) {
+      const now = new Date();
+      const age = differenceInYears(now, date);
+      console.log(age);
+      if (age < 16) {
+        return setErrorAge("too young");
+      } else {
+        const newHeight = height.toString().replace(".", "");
+        let calcul;
+        if (gender == "Madame") {
+          calcul = (
+            9.99 * weight +
+            6.25 * parseInt(newHeight) -
+            4.92 * age -
+            161
+          ).toFixed(2);
+        } else {
+          calcul = (
+            9.99 * weight +
+            6.25 * parseInt(newHeight) -
+            4.92 * age +
+            5
+          ).toFixed(2);
+        }
+        const { error } = await supabase.from("Users").insert({
+          gender: gender,
+          username: username,
+          email: email,
+          birthday: date,
+          prévision: calcul,
+          weight: weight,
+          height: height,
+        });
+        await AsyncStorage.setItem("token", email);
+        setEmail("");
+        setPassword("");
+        router.replace("/homepage");
+      }
+    } else {
+      setErrorAge("Please complete all fields");
+    }
   };
 
   return (
@@ -184,6 +224,7 @@ export default function Login() {
               />
             </View>
             <Button title="Send Profile" onPress={() => handleSubmit()} />
+            {errorAge ? <Text>{errorAge}</Text> : ""}
           </ThemedView>
         </View>
       </Modal>
