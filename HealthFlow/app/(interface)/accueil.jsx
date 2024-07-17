@@ -42,6 +42,9 @@ export default function AccueilScreen() {
   const [image, setImage] = useState(null);
   const [getImage, setGetImage] = useState("");
   const [files, setFiles] = useState([]);
+  const [carbohydrate, setCarbohydrate] = useState("");
+  const [protein, setProtein] = useState("");
+  const [fat, setFat] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -80,6 +83,19 @@ export default function AccueilScreen() {
     setShowForm(false);
   };
 
+  const handleSlidingCompleteCarbohydrate = (val) => {
+    const roundedValue = Math.round(val * 100) / 100;
+    setCarbohydrate(roundedValue);
+  };
+
+  const handleSlidingCompleteProtein = (val) => {
+    const roundedValue = Math.round(val * 100) / 100;
+    setProtein(roundedValue);
+  };
+  const handleSlidingCompleteFat = (val) => {
+    const roundedValue = Math.round(val * 100) / 100;
+    setFat(roundedValue);
+  };
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -107,7 +123,6 @@ export default function AccueilScreen() {
         console.error("Error uploading file:", error);
       } else {
         console.log("File uploaded successfully:", data);
-        // Lien : https://tvudmxokkdxjcxoeaveh.supabase.co/storage/v1/object/public/files/1721216365240.png
         setImage(
           `https://tvudmxokkdxjcxoeaveh.supabase.co/storage/v1/object/public/${data.fullPath}`
         );
@@ -123,6 +138,9 @@ export default function AccueilScreen() {
       name: ingredient,
       calorie: calorie,
       categorie_id: categorie,
+      carbohydrate: carbohydrate,
+      protein: protein,
+      fat: fat,
     });
     if (error == null) {
       setImage("");
@@ -153,7 +171,7 @@ export default function AccueilScreen() {
             }}
             onPress={close}
           />
-          <ThemedView style={styles.titleContainer}>
+          <ThemedView style={styles.titleContainerModal}>
             <View style={styles.modalContainer}>
               <Text
                 style={{ marginBottom: 20, fontSize: 17, fontWeight: "bold" }}
@@ -194,7 +212,43 @@ export default function AccueilScreen() {
                 value={calorie}
                 onValueChange={(value) => setCalorie(value)}
               />
-              <View style={styles.container}>
+              <Text>Carbohydrate per 100g: {carbohydrate}</Text>
+              <Slider
+                style={{ width: 250, height: 40 }}
+                minimumValue={0}
+                maximumValue={50}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+                thumbTintColor="#b9e4c9"
+                step={0.1}
+                value={carbohydrate}
+                onValueChange={handleSlidingCompleteCarbohydrate}
+              />
+              <Text>Protein per 100g: {protein}</Text>
+              <Slider
+                style={{ width: 250, height: 40 }}
+                minimumValue={0}
+                maximumValue={50}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+                thumbTintColor="#b9e4c9"
+                step={0.1}
+                value={protein}
+                onValueChange={handleSlidingCompleteProtein}
+              />
+              <Text>Fat per 100g: {fat}</Text>
+              <Slider
+                style={{ width: 250, height: 40 }}
+                minimumValue={0}
+                maximumValue={50}
+                minimumTrackTintColor="#FFFFFF"
+                maximumTrackTintColor="#000000"
+                thumbTintColor="#b9e4c9"
+                step={0.1}
+                value={fat}
+                onValueChange={handleSlidingCompleteFat}
+              />
+              <View style={styles.containerModal}>
                 <Button
                   title="Pick an image from camera roll"
                   onPress={pickImage}
@@ -303,6 +357,12 @@ const styles = StyleSheet.create({
     marginTop: 40,
     gap: 8,
   },
+  titleContainerModal: {
+    backgroundColor: "#f5f6fa",
+    height: height,
+    marginTop: 10,
+    gap: 8,
+  },
   flex: {
     marginTop: 10,
     display: "flex",
@@ -314,8 +374,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     display: "flex",
     flexDirection: "row",
-    // justifyContent: "flex-start",
-    // alignItems: "flex-start",
   },
   input: {
     backgroundColor: "#ced6e0",
@@ -336,6 +394,17 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "space-between",
   },
+  containerModal: {
+    marginTop: 10,
+    marginLeft: 20,
+    marginRight: 20,
+    borderRadius: 20,
+    height: 150,
+    padding: 15,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  },
   food_container: {
     marginTop: 10,
     marginRight: 20,
@@ -344,14 +413,14 @@ const styles = StyleSheet.create({
     padding: 10,
     height: "auto",
   },
-  image: { marginBottom: 15, width: 60, height: 60, borderRadius: 15 },
+  image: { width: 60, height: 60, borderRadius: 15 },
   modalOverlay: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
 
   modalContainer: {
-    marginTop: 50,
+    marginTop: 30,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
