@@ -20,7 +20,7 @@ import Flatlist_item from "./Flatlist_item";
 const { height } = Dimensions.get("window");
 const windowWidth = Dimensions.get("window").width;
 
-export default function Add_template() {
+export default function Add_template(data) {
   const [category, setCategory] = useState(null);
   const [search, setSearch] = useState("");
   const [classActive, setClassActive] = useState(null);
@@ -108,9 +108,14 @@ export default function Add_template() {
         </View>
         <View style={styles.mainContainer}>
           {ingredientByCategory.length > 0 ? (
-            <Flatlist_item data={ingredientByCategory} />
+            <Flatlist_item
+              data={{
+                ingredient: ingredientByCategory,
+                name: data.data,
+              }}
+            />
           ) : (
-            <Flatlist_item data={ingredient} />
+            <Flatlist_item data={{ ingredient: ingredient, name: data.data }} />
           )}
         </View>
       </View>

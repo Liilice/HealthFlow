@@ -5,14 +5,20 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  FlatList,
+  TextInput,
 } from "react-native";
 import { ThemedView } from "@/components/ThemedView";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { useState, useEffect } from "react";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { router } from "expo-router";
-
+import { supabase } from "@/lib/supabase";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FontAwesome6 } from "@expo/vector-icons";
+import Add_template from "@/components/ingredient/Add_template";
 const { height } = Dimensions.get("window");
+const windowWidth = Dimensions.get("window").width;
 
 export default function LunchSreen() {
   const [show, setShow] = useState(false);
@@ -32,26 +38,33 @@ export default function LunchSreen() {
   const redirectAccueil = () => {
     router.replace("/accueil");
   };
+
   return (
-    <ThemedView style={styles.titleContainer}>
-      <View style={styles.flex}>
-        <TouchableOpacity onPress={() => redirectAccueil()}>
-          <TabBarIcon name={"arrow-back"} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => showDate("date")} style={styles.input}>
-          <Text>Lunch{}</Text>
-        </TouchableOpacity>
-        {show && (
-          <DateTimePicker
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-          />
-        )}
-      </View>
-    </ThemedView>
+    <View>
+      <ThemedView style={styles.titleContainer}>
+        <View style={styles.flex}>
+          <TouchableOpacity onPress={() => redirectAccueil()}>
+            <TabBarIcon name={"arrow-back"} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => showDate("date")}
+            style={styles.inputDate}
+          >
+            <Text>Lunch</Text>
+          </TouchableOpacity>
+          {show && (
+            <DateTimePicker
+              value={date}
+              mode={mode}
+              is24Hour={true}
+              display="default"
+              onChange={onChange}
+            />
+          )}
+        </View>
+        <Add_template data={"Lunch"} />
+      </ThemedView>
+    </View>
   );
 }
 

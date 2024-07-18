@@ -62,7 +62,7 @@ export default function BreakfastSreen() {
             />
           )}
         </View>
-        <Add_template />
+        <Add_template data={"Breakfast"} />
       </ThemedView>
     </View>
   );

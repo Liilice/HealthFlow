@@ -28,17 +28,20 @@ export default function CalculInterface(data) {
   const [carbohydrateInitial, setCarbohydrateInitial] = useState("");
   const [proteinInitial, setProteinInitial] = useState("");
   const [fatInitial, setFatInitial] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
-    setCalorie(data.data.calorie);
-    setCarbohydrate(data.data.carbohydrate);
-    setProtein(data.data.protein);
-    setFat(data.data.fat);
-    setCalorieInitial(data.data.calorie);
-    setCarbohydrateInitial(data.data.carbohydrate);
-    setProteinInitial(data.data.protein);
-    setFatInitial(data.data.fat);
-    setElem(data.data);
+    console.log(data.data.elemInfo);
+    setCalorie(data.data.elemInfo.calorie);
+    setCarbohydrate(data.data.elemInfo.carbohydrate);
+    setProtein(data.data.elemInfo.protein);
+    setFat(data.data.elemInfo.fat);
+    setCalorieInitial(data.data.elemInfo.calorie);
+    setCarbohydrateInitial(data.data.elemInfo.carbohydrate);
+    setProteinInitial(data.data.elemInfo.protein);
+    setFatInitial(data.data.elemInfo.fat);
+    setElem(data.data.elemInfo);
+    setName(data.data.name);
   }, []);
 
   const handlePress = (elem) => {
@@ -79,8 +82,9 @@ export default function CalculInterface(data) {
   const insertData = async () => {
     console.log(calorie, carbohydrate, protein, fat, elem.id);
     const token = await AsyncStorage.getItem("token");
-    const { error } = await supabase.from("Breakfast").insert({
-      indredient: parseInt(elem.id),
+    console.log(name);
+    const { error } = await supabase.from(name).insert({
+      ingredient: parseInt(elem.id),
       calorie: calorie,
       user: token,
       carbohydrate: carbohydrate,

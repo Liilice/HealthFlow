@@ -18,12 +18,14 @@ export default function Flatlist_item(data) {
   const [ingredient, setIngredient] = useState([]);
   const [activeModal, setActiveModal] = useState(false);
   const [elemInfo, setElemInfo] = useState([]);
+  const [name, setName] = useState("");
+  // const []
   useEffect(() => {
-    setIngredient(data.data);
+    setIngredient(data.data.ingredient);
+    setName(data.data.name);
   }, [data]);
 
   const addFood = (elem) => {
-    console.log("elem", elem);
     setElemInfo(elem);
     setActiveModal(true);
   };
@@ -53,7 +55,7 @@ export default function Flatlist_item(data) {
             }}
             onPress={close}
           />
-          <CalculInterface data={elemInfo} />
+          <CalculInterface data={{ elemInfo: elemInfo, name: name }} />
         </View>
       </Modal>
       <FlatList
