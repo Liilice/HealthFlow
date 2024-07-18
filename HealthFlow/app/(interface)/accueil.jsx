@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   Modal,
+  ScrollView,
   Button,
   TouchableOpacity,
 } from "react-native";
@@ -27,6 +28,7 @@ import { FileObject } from "@supabase/storage-js";
 import { decode } from "base64-arraybuffer";
 import * as FileSystem from "expo-file-system";
 import { Line } from "react-native-svg";
+import CalculAccueil from "@/components/ingredient/CalculAccueil";
 
 const { height } = Dimensions.get("window");
 
@@ -45,22 +47,94 @@ export default function AccueilScreen() {
   const [carbohydrate, setCarbohydrate] = useState("");
   const [protein, setProtein] = useState("");
   const [fat, setFat] = useState("");
-
+  const [lunch, setLunch] = useState([]);
+  const [dinner, setDinner] = useState([]);
+  const [snacks, setSnacks] = useState([]);
+  const [totalBreakfast, setTotalBreakfast] = useState(0);
+  const [totalLunch, setTotalLunch] = useState(0);
+  const [totalDinner, setTotalDinner] = useState(0);
+  const [totalSnacks, setTotalSnacks] = useState(0);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
     const getData = async () => {
       const token = await AsyncStorage.getItem("token");
-      const { data, error } = await supabase
-        .from("Categorie")
-        .select("id, name");
-      if (data) {
-        setData(data);
+      const { data: breakfastData, error: breakfastError } = await supabase
+        .from("Breakfast")
+        .select("*, Ingredient:ingredient (name, image)")
+        .eq("user", token)
+        .eq(
+          "created_at",
+          new Date().toLocaleDateString("fr-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+        );
+      if (breakfastData) {
+        setTotalBreakfast(
+          breakfastData.reduce((sum, item) => sum + item.calorie, 0)
+        );
+        setData(breakfastData);
+      }
+
+      const { data: lunchData, error: lunchError } = await supabase
+        .from("Lunch")
+        .select("*, Ingredient:ingredient (name, image)")
+        .eq("user", token)
+        .eq(
+          "created_at",
+          new Date().toLocaleDateString("fr-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+        );
+      if (lunchData) {
+        setTotalLunch(lunchData.reduce((sum, item) => sum + item.calorie, 0));
+        setLunch(lunchData);
+      } else {
+        console.log("errorlucnhc ", lunchError);
+      }
+
+      const { data: dinnerData, error: dinnerError } = await supabase
+        .from("Dinner")
+        .select("*, Ingredient:ingredient (name, image)")
+        .eq("user", token)
+        .eq(
+          "created_at",
+          new Date().toLocaleDateString("fr-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+        );
+      if (dinnerData) {
+        setTotalDinner(dinnerData.reduce((sum, item) => sum + item.calorie, 0));
+        setDinner(dinnerData);
+      }
+      const { data: snacksData, error: snacksError } = await supabase
+        .from("Snacks")
+        .select("*, Ingredient:ingredient (name, image)")
+        .eq("user", token)
+        .eq(
+          "created_at",
+          new Date().toLocaleDateString("fr-CA", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+          })
+        );
+      if (snacksData) {
+        setTotalSnacks(snacksData.reduce((sum, item) => sum + item.calorie, 0));
+        setSnacks(snacksData);
       }
     };
     getData();
-    loadImages();
-  }, []);
-
-  const loadImages = async () => {};
+    const calculateTotalCalories = () => {
+      setTotal(totalBreakfast + totalDinner + totalLunch + totalSnacks);
+    };
+    calculateTotalCalories();
+  }, [data]);
   const showDate = (modeToShow) => {
     setShow(true);
     setMode(modeToShow);
@@ -73,6 +147,9 @@ export default function AccueilScreen() {
 
   const redirectSettings = () => {
     router.replace("/settings");
+  };
+  const redirecToAccueil = () => {
+    router.replace("/homepage");
   };
 
   const uploadData = () => {
@@ -265,7 +342,7 @@ export default function AccueilScreen() {
 
       <ThemedView style={styles.titleContainer}>
         <View style={styles.flex}>
-          <TouchableOpacity onPress={() => showDate("date")}>
+          <TouchableOpacity onPress={() => redirecToAccueil()}>
             <TabBarIcon name={"arrow-back"} />
           </TouchableOpacity>
           <TouchableOpacity
@@ -293,7 +370,8 @@ export default function AccueilScreen() {
         <ThemedView style={styles.container}>
           <View style={styles.flex}>
             <Text>
-              Dietary{"\n"}intake{"\n"}0
+              Dietary{"\n"}intake{"\n"}
+              {total}
             </Text>
             <CircularProgress
               value={1333}
@@ -325,26 +403,14 @@ export default function AccueilScreen() {
             </Text>
           </View>
         </ThemedView>
-        <ThemedView style={styles.food_container}>
-          <View style={styles.flex}>
-            <Text>Breakfast</Text>
-            <Text>0 Calorie</Text>
-          </View>
-          <View style={styles.flex_Normal}>
-            <Image
-              source={require("@/assets/images/logo-color.png")}
-              style={styles.image}
-            />
-            {/* {image && <Image source={{ uri: image }} style={styles.image} />} */}
-            <View style={styles.flex}>
-              <View>
-                <Text>Title</Text>
-                <Text>Gramme</Text>
-              </View>
-              <Text>Calorie</Text>
-            </View>
-          </View>
-        </ThemedView>
+        <View style={{ height: 430 }}>
+          <ScrollView>
+            <CalculAccueil data={{ data: data, name: "Breakfast" }} />
+            <CalculAccueil data={{ data: lunch, name: "Lunch" }} />
+            <CalculAccueil data={{ data: dinner, name: "Dinner" }} />
+            <CalculAccueil data={{ data: snacks, name: "Snacks" }} />
+          </ScrollView>
+        </View>
       </ThemedView>
     </View>
   );
@@ -442,5 +508,10 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     marginBottom: 20,
     justifyContent: "center",
+  },
+  flex_space: {
+    display: "flex",
+    // flexDirection: "row",
+    // justifyContent: "space-between",
   },
 });
