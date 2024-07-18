@@ -16,6 +16,7 @@ import { router } from "expo-router";
 import { supabase } from "@/lib/supabase";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FontAwesome6 } from "@expo/vector-icons";
+import Flatlist_item from "./Flatlist_item";
 const { height } = Dimensions.get("window");
 const windowWidth = Dimensions.get("window").width;
 
@@ -107,47 +108,9 @@ export default function Add_template() {
         </View>
         <View style={styles.mainContainer}>
           {ingredientByCategory.length > 0 ? (
-            <FlatList
-              data={ingredientByCategory}
-              renderItem={({ item }) => (
-                <TouchableOpacity>
-                  <View style={styles.flex_normal}>
-                    <Image source={{ uri: item.image }} style={styles.image} />
-                    <View>
-                      <Text>{item.name}</Text>
-                      <Text>{item.calorie}/100g</Text>
-                    </View>
-                    <View>
-                      <Text>
-                        <TabBarIcon name={"add"} color="#40CD98" />
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item._id}
-            />
+            <Flatlist_item data={ingredientByCategory} />
           ) : (
-            <FlatList
-              data={ingredient}
-              renderItem={({ item }) => (
-                <TouchableOpacity>
-                  <View style={styles.flex_normal}>
-                    <Image source={{ uri: item.image }} style={styles.image} />
-                    <View>
-                      <Text>{item.name}</Text>
-                      <Text>{item.calorie}/100g</Text>
-                    </View>
-                    <View>
-                      <Text>
-                        <TabBarIcon name={"add"} color="#40CD98" />
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item._id}
-            />
+            <Flatlist_item data={ingredient} />
           )}
         </View>
       </View>
@@ -188,7 +151,6 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
-  image: { width: 60, height: 60, borderRadius: 15 },
   active: {
     backgroundColor: "white",
     marginBottom: 40,
@@ -198,11 +160,5 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontWeight: "bold",
     fontStyle: "italic",
-  },
-  flex_normal: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
   },
 });
