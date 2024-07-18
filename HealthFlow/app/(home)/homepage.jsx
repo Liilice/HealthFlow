@@ -23,8 +23,6 @@ export default function HomepageScreen() {
   useEffect(() => {
     const getData = async () => {
       const token = await AsyncStorage.getItem("token");
-      console.log(token);
-
       const { data, error } = await supabase
         .from("Users")
         .select("*")
@@ -35,7 +33,6 @@ export default function HomepageScreen() {
     };
     getData();
   }, []);
-  console.log("data ", data);
   return (
     <ThemedView style={styles.titleContainer}>
       <View style={styles.input}>
