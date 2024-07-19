@@ -149,8 +149,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     marginLeft: 10,
-    borderColor: "red",
-    borderWidth: 3,
     height: height - 175,
     width: windowWidth / 2 + 45,
     paddingLeft: 15,

@@ -28,44 +28,44 @@ export default function HomeScreen() {
       <View style={styles.grid}>
         <Card
           data={{
-            title: "饮食运动记录",
-            p: "轻松空热量 健康吃瘦",
-            p1: "饮食摄入 0千卡",
+            title: "Diet and exsercise records",
+            p: "Control your diet",
+            p1: " -- Calories left",
           }}
         />
         <Card
           data={{
-            title: "记录体重",
-            p: "每天多瘦瘦一点",
-            p1: "-- 公斤",
+            title: "Record weight",
+            p: "Lose weight every day",
+            p1: "-- Kilogram",
           }}
         />
         <Card
           data={{
-            title: "喝水记录",
-            p: "喝对水 组燃烧",
-            p1: "还要喝 -- 毫升",
+            title: "Daily Hydration",
+            p: "Drinking water helps burn calories.",
+            p1: "-- cl remaining",
           }}
         />
         <Card
           data={{
-            title: "感受记录",
-            p: "及时反馈 贴心陪伴",
-            p1: "现在感觉如何",
+            title: "My Feelings",
+            p: "Personalized support according to your feelings. ",
+            p1: "",
           }}
         />
         <Card
           data={{
-            title: "步数记录",
-            p: "趣味挑战 轻松燃脂",
-            p1: "-- 步",
+            title: "Daily Steps",
+            p: "Little effort make you burn a lot of calories.",
+            p1: "-- step",
           }}
         />
         <Card
           data={{
-            title: "近期记录",
-            p: "姨妈助手 暖心陪伴",
-            p1: "第 -- 天",
+            title: "Monstrual Period",
+            p: "Anticipate and organize your life easier",
+            p1: " -- Day(s) remaining",
           }}
         />
       </View>
