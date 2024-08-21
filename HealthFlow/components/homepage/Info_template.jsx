@@ -32,8 +32,11 @@ export function Info_template({ data }) {
         <Text style={styles.title}>{name}</Text>
         <Image source={image} style={styles.image} />
         {info[0] &&
-          info[0].description.map((elem) => (
-            <Text style={{ marginLeft: 20, marginRight: 20, marginBottom: 5 }}>
+          info[0].description.map((elem, index) => (
+            <Text
+              key={index}
+              style={{ marginLeft: 20, marginRight: 20, marginBottom: 5 }}
+            >
               {elem}
             </Text>
           ))}
@@ -48,8 +51,9 @@ export function Info_template({ data }) {
             Key points for use
           </Text>
           {info[0] &&
-            info[0].Key_points.map((elem) => (
+            info[0].Key_points.map((elem, index) => (
               <View
+                key={index}
                 style={{
                   display: "flex",
                   flexDirection: "row",
@@ -76,8 +80,9 @@ export function Info_template({ data }) {
           )}
           <View style={{ marginBottom: 100 }}>
             {info[0] &&
-              info[0].Suitable_for_the_crowd.people.map((elem) => (
+              info[0].Suitable_for_the_crowd.people.map((elem, index) => (
                 <View
+                  key={index}
                   style={{
                     display: "flex",
                     flexDirection: "row",

@@ -92,9 +92,10 @@ export default function Add_template(data) {
       <View style={styles.flex_container}>
         <View style={styles.asideContainer}>
           {category &&
-            category.map((elem) => (
+            category.map((elem, index) => (
               <TouchableOpacity key={elem.id} onPress={() => active(elem.id)}>
                 <Text
+                  key={index}
                   style={
                     classActive === elem.id
                       ? styles.active
@@ -149,8 +150,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     marginLeft: 10,
-    borderColor: "red",
-    borderWidth: 3,
     height: height - 175,
     width: windowWidth / 2 + 45,
     paddingLeft: 15,

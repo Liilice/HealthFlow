@@ -25,13 +25,13 @@ export default function RootLayout() {
     if (loaded) {
       SplashScreen.hideAsync();
     }
-    async function existToken() {
-      const token = await AsyncStorage.getItem("token");
-      if (token !== null) {
-        router.replace("/homepage");
-      }
-    }
-    existToken();
+    // async function existToken() {
+    //   const token = await AsyncStorage.getItem("token");
+    //   if (token !== null) {
+    //     router.replace("/homepage");
+    //   }
+    // }
+    // existToken();
   }, [loaded]);
 
   if (!loaded) {
