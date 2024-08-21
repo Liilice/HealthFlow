@@ -55,9 +55,17 @@ export default function AccueilScreen() {
   const [totalDinner, setTotalDinner] = useState(0);
   const [totalSnacks, setTotalSnacks] = useState(0);
   const [total, setTotal] = useState(0);
+  const [allCategory, setAllCategory] = useState([]);
   useEffect(() => {
     const getData = async () => {
       const token = await AsyncStorage.getItem("token");
+      const { data: categoryData, error: categoryError } = await supabase
+        .from("Categorie")
+        .select("id, name");
+      if (categoryData) {
+        setAllCategory(categoryData);
+      }
+
       const { data: breakfastData, error: breakfastError } = await supabase
         .from("Breakfast")
         .select("*, Ingredient:ingredient (name, image)")
@@ -265,8 +273,8 @@ export default function AccueilScreen() {
                     value=""
                     enabled={false}
                   />
-                  {data &&
-                    data.map((elem) => (
+                  {allCategory &&
+                    allCategory.map((elem) => (
                       <Picker.Item label={elem.name} value={elem.id} />
                     ))}
                 </Picker>

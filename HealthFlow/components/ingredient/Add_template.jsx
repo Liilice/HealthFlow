@@ -92,9 +92,10 @@ export default function Add_template(data) {
       <View style={styles.flex_container}>
         <View style={styles.asideContainer}>
           {category &&
-            category.map((elem) => (
+            category.map((elem, index) => (
               <TouchableOpacity key={elem.id} onPress={() => active(elem.id)}>
                 <Text
+                  key={index}
                   style={
                     classActive === elem.id
                       ? styles.active
